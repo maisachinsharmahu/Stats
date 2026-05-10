@@ -6,106 +6,155 @@ This repository contains 14 comprehensive exercises implemented in Scilab, SPSS,
 
 ## 1. Basic Matrix Operations (Scilab)
 ### Theoretical Background
-Matrices are rectangular arrays of numbers arranged in rows and columns. In Scilab, matrix operations are fundamental. 
-- **Matrix Addition/Subtraction**: Performed element-wise on matrices of the same dimensions.
-- **Matrix Multiplication**: A dot product operation where the number of columns in the first matrix must match the number of rows in the second.
-- **Transpose**: An operation that flips a matrix over its diagonal, switching row and column indices.
+Matrices are rectangular arrays of numbers arranged in rows and columns. In Scilab, matrix operations are fundamental for linear algebra.
+- **Addition/Subtraction**: Performed element-wise on matrices of identical dimensions.
+- **Multiplication**: A row-by-column dot product operation.
+- **Transpose ($A^T$)**: Flips a matrix over its main diagonal.
 
 ### Scilab Code
 ```scilab
+// Matrix definition
 A = [1, 2; 3, 4]
 B = [5, 6; 7, 8]
-C = A + B
-D = A - B
-E = A * B
-F = A'
-disp("Addition:", C, "Subtraction:", D, "Multiplication:", E, "Transpose:", F)
+
+// Operations
+Addition = A + B
+Subtraction = A - B
+Multiplication = A * B
+Transpose_A = A'
+
+// Display Results
+disp("Matrix Addition:", Addition)
+disp("Matrix Subtraction:", Subtraction)
+disp("Matrix Multiplication:", Multiplication)
+disp("Matrix Transpose:", Transpose_A)
+```
+
+### Expected Output
+```text
+ Matrix Addition:
+    6.    8.
+    10.   12.
+
+ Matrix Multiplication:
+    19.   22.
+    43.   50.
 ```
 
 ---
 
 ## 2. Eigenvalues and Eigenvectors (Scilab)
 ### Theoretical Background
-Eigenvalues and eigenvectors are properties of square matrices. For a square matrix $A$, an eigenvector $v$ and its corresponding eigenvalue $\lambda$ satisfy the equation $Av = \lambda v$. 
-- **Physical Significance**: They are used in stability analysis, vibration modeling, and Principal Component Analysis (PCA).
-- **Characteristic Equation**: Found by solving $det(A - \lambda I) = 0$.
+For a square matrix $A$, eigenvectors ($v$) and eigenvalues ($\lambda$) satisfy $Av = \lambda v$. They represent directions along which a linear transformation acts by simple scaling.
 
 ### Scilab Code
 ```scilab
-A = [1, 2, 3; 4, 5, 6; 7, 8, 9]
+// Define a square matrix
+A = [1, 2; 3, 4]
+
+// spec() returns eigenvectors (v) and eigenvalues (d)
 [v, d] = spec(A)
-disp("Eigenvectors Matrix (v):", v)
-disp("Eigenvalues (Diagonal d):", d)
+
+disp("Eigenvectors (Columns):", v)
+disp("Eigenvalues (Diagonal):", d)
+```
+
+### Expected Output
+```text
+ Eigenvectors (Columns):
+   -0.8245648  -0.4159736
+    0.5657675  -0.9093767
+
+ Eigenvalues (Diagonal):
+   -0.3722813   0.        
+    0.          5.3722813 
 ```
 
 ---
 
 ## 3. Equation Solvers (Scilab)
 ### Theoretical Background
-Solving systems of linear equations ($Ax = b$) is a core task in numerical analysis.
-- **Gauss Elimination**: A direct method that transforms the matrix into upper triangular form.
-- **Gauss-Jordan**: An extension that transforms the matrix into Reduced Row Echelon Form (RREF).
-- **Gauss-Seidel**: An iterative method used for large, sparse systems where convergence is guaranteed if the matrix is diagonally dominant.
+Solving $Ax = b$ using direct and iterative methods.
+- **Gauss-Jordan**: Transforms $[A|b]$ to $[I|x]$ using row operations.
+- **Gauss-Seidel**: Iteratively updates $x_i$ until convergence.
 
 ### Scilab Code
 ```scilab
-A = [2, 1, -1; -3, -1, 2; -2, 1, 2]
-b = [8; -11; -3]
+// System: 2x + y = 5, x + 3y = 10
+A = [2, 1; 1, 3]
+b = [5; 10]
 Aug = [A b]
-X = rref(Aug)
-disp("Solved Matrix (Gauss Jordan):", X)
+
+// Solution using Reduced Row Echelon Form
+Solution = rref(Aug)
+disp("Final Augmented Matrix:", Solution)
+```
+
+### Expected Output
+```text
+ Final Augmented Matrix:
+    1.   0.   1.
+    0.   1.   3.
+ (Result: x=1, y=3)
 ```
 
 ---
 
 ## 4. Matrix Properties (Scilab)
 ### Theoretical Background
-Matrix algebra follows specific laws:
-- **Commutative (Addition)**: $A + B = B + A$.
-- **Associative**: $(A + B) + C = A + (B + C)$ and $(AB)C = A(BC)$.
-- **Distributive**: $A(B + C) = AB + AC$.
-- **Note**: Matrix multiplication is generally **not** commutative ($AB \neq BA$).
+Verifying laws of matrix algebra: Associative $(AB)C = A(BC)$ and Distributive $A(B+C) = AB + AC$.
 
 ### Scilab Code
 ```scilab
-A = [1, 2; 3, 4]; B = [5, 6; 7, 8]; C = [9, 1; 2, 3]
-disp("Commutative (A+B == B+A):", (A + B) == (B + A))
-disp("Associative ((A*B)*C == A*(B*C)):", ((A * B) * C) == (A * (B * C)))
-disp("Distributive (A*(B+C) == AB + AC):", (A * (B + C)) == ((A * B) + (A * C)))
+A = [1, 2; 3, 4]; B = [5, 6; 7, 8]; C = [9, 0; 1, 2]
+
+// Verification
+LHS = A * (B + C)
+RHS = (A * B) + (A * C)
+
+disp("LHS (A*(B+C)):", LHS)
+disp("RHS (AB + AC):", RHS)
+disp("Property Verified:", LHS == RHS)
 ```
 
 ---
 
 ## 5. Reduced Row Echelon Form (Scilab)
 ### Theoretical Background
-The Reduced Row Echelon Form (RREF) is a standardized form of a matrix reached through elementary row operations.
-- **Conditions**: The first non-zero entry in each row is 1 (pivot), and each pivot is the only non-zero entry in its column.
-- **Applications**: Determining the rank of a matrix and the consistency of linear systems.
+RREF is the most simplified form of a matrix used to determine the rank and nullity.
 
 ### Scilab Code
 ```scilab
-A = [1, 2, 3, 4; 5, 6, 7, 8; 9, 10, 11, 12]
+A = [1, 2, 1; 2, 4, 2; 3, 6, 3]
 R = rref(A)
-disp("Matrix in RREF:", R)
+disp("Original Matrix:", A)
+disp("RREF Form:", R)
+```
+
+### Expected Output
+```text
+ RREF Form:
+    1.   2.   1.
+    0.   0.   0.
+    0.   0.   0.
+ (Rank of Matrix = 1)
 ```
 
 ---
 
 ## 6. Plotting Functions and Derivatives (Scilab)
 ### Theoretical Background
-Graphical representation helps in understanding the behavior of functions and their rates of change.
-- **Function**: A relationship where each input has a unique output.
-- **Derivative**: Represents the instantaneous rate of change or the slope of the tangent at any point on the function.
-- **Scilab Plotting**: Uses the `plot()` function with customizable colors and line styles.
+Visualizing the relationship between a function $f(x)$ and its slope (derivative) $f'(x)$.
 
 ### Scilab Code
 ```scilab
 x = -5:0.1:5;
-y = x.^2 + 2*x + 1;
-dy = 2*x + 2;
+y = x.^2 + 2*x + 1; // Function
+dy = 2*x + 2;       // Derivative
+
 plot(x, y, "blue"); plot(x, dy, "red--");
-title("Function and its Derivative");
-legend("f(x)", "f'(x)");
+title("Function and its Derivative Plot");
+legend("f(x) = x^2+2x+1", "f''(x) = 2x+2");
 grid();
 ```
 <img src="./outputs/06_function_plot.png" width="500">
@@ -114,61 +163,61 @@ grid();
 
 ## 7. Frequency Table (SPSS)
 ### Theoretical Background
-Frequency distribution is a summary of data showing the count of occurrences in each category or interval.
-- **Absolute Frequency**: Actual count.
-- **Relative Frequency**: Proportion of total count.
-- **Cumulative Frequency**: Sum of frequencies up to the current interval.
+Categorizing raw data into a structured table showing counts and percentages.
 
-### Steps in SPSS
-1. Navigate to `Analyze` -> `Descriptive Statistics` -> `Frequencies`.
-2. Select the variables and ensure "Display frequency tables" is checked.
+### SPSS Syntax
+```spss
+FREQUENCIES VARIABLES=Age Gender
+  /STATISTICS=STDDEV MINIMUM MAXIMUM MEAN
+  /BARCHART FREQ
+  /ORDER=ANALYSIS.
+```
 
+### Expected Output
 | Category | Frequency | Percent | Valid Percent | Cumulative Percent |
 |----------|-----------|---------|---------------|--------------------|
-| Group A  | 10        | 50.0    | 50.0          | 50.0               |
-| Group B  | 10        | 50.0    | 50.0          | 100.0              |
+| Group A  | 15        | 60.0    | 60.0          | 60.0               |
+| Group B  | 10        | 40.0    | 40.0          | 100.0              |
 
 ---
 
 ## 8. Finding Outliers (SPSS)
 ### Theoretical Background
-Outliers are data points that deviate significantly from the rest of the dataset.
-- **Identification**: Commonly found using the Interquartile Range (IQR) method. Any point below $Q1 - 1.5 \times IQR$ or above $Q3 + 1.5 \times IQR$ is an outlier.
-- **Impact**: Outliers can skew results, especially the mean and standard deviation.
+Using Boxplots and Interquartile Range (IQR) to identify extreme values.
 
-### Steps in SPSS
-1. `Analyze` -> `Descriptive Statistics` -> `Explore`.
-2. Move variable to `Dependent List` -> `Plots` -> Select `Boxplots`.
-3. SPSS will identify outliers with labels in the boxplot output.
+### SPSS Syntax
+```spss
+EXAMINE VARIABLES=Salary
+  /PLOT BOXPLOT STEMLEAF
+  /COMPARE GROUPS
+  /STATISTICS DESCRIPTIVES
+  /MISSING LISTWISE
+  /NOTOTAL.
+```
 
 ---
 
 ## 9. Risk Analysis of Projects (SPSS)
 ### Theoretical Background
-In financial statistics, risk is the uncertainty of returns.
-- **Standard Deviation ($\sigma$)**: Measures absolute risk.
-- **Coefficient of Variation (CV)**: Measures relative risk ($CV = \sigma / \mu$). It is useful when comparing projects with different mean returns.
-- **Rule**: Higher CV indicates higher risk per unit of return.
+Comparing risk using the **Coefficient of Variation (CV)**.
 
-### Example Metrics
-| Project | Mean Return | Std. Deviation | CV | Risk Rank |
-|---------|-------------|----------------|----|-----------|
-| A       | 10%         | 2%             | 0.2| Low       |
-| B       | 12%         | 6%             | 0.5| High      |
+### SPSS Syntax
+```spss
+DESCRIPTIVES VARIABLES=Project_A_Returns Project_B_Returns
+  /STATISTICS=MEAN STDDEV MIN MAX.
+```
+*Note: CV is calculated as (Std. Deviation / Mean).*
 
 ---
 
 ## 10. Scatter Plots and Diagnostics (R)
 ### Theoretical Background
-Regression diagnostics verify if the assumptions of linear regression hold.
-- **Scatter Plot**: Shows the relationship between two continuous variables.
-- **Residuals vs Fitted**: Checks for homoscedasticity (constant variance).
-- **Leverage**: Identifies observations that have a great influence on the model's coefficients.
+Verifying regression assumptions (linearity, homoscedasticity) using diagnostic plots.
 
 ### R Code
 ```r
 model <- lm(mpg ~ hp + wt, data = mtcars)
-par(mfrow=c(2,2)) # diagnostic grid
+par(mfrow=c(2,2)) # Setup 2x2 plotting area
 plot(model)
 ```
 <img src="./outputs/10_r_plots.png" width="500">
@@ -177,31 +226,34 @@ plot(model)
 
 ## 11. Correlation Analysis (R)
 ### Theoretical Background
-Correlation quantifies the relationship between two variables.
-- **Pearson Coefficient ($r$)**: Ranges from -1 to +1.
-- **Significance ($p$-value)**: Determines if the observed correlation is statistically significant ($p < 0.05$).
+Quantifying the strength of relationship between multiple variables.
 
 ### R Code
 ```r
-x <- c(12, 15, 18, 20, 25, 30); y <- c(10, 14, 17, 22, 24, 28)
-cor_value <- cor(x, y)
-cor_test <- cor.test(x, y)
-print(cor_value)
+# Load dataset
+data(mtcars)
+# Select specific columns
+df <- mtcars[, c("mpg", "hp", "wt", "qsec")]
+# Correlation Matrix
+cor_matrix <- cor(df)
+print(cor_matrix)
+# Plotting Correlation
+library(corrplot)
+corrplot(cor_matrix, method="circle")
 ```
+<img src="./outputs/11_r_correlation.png" width="500">
 
 ---
 
 ## 12. Time Series Analysis (R)
 ### Theoretical Background
-A time series is a sequence of data points indexed in time order.
-- **Components**: Trend (long-term movement), Seasonality (repeating patterns), and Noise.
-- **Stationarity**: A property where statistical characteristics like mean and variance are constant over time.
+Analyzing data points collected at successive intervals to identify trends.
 
 ### R Code
 ```r
-sales_ts <- ts(c(350, 440, 460, 530, 520, 540, 680, 590, 480, 510, 380, 450), 
-               start=c(2018, 1), frequency=12)
-plot(sales_ts, col="darkblue", lwd=2, main="Time Series Pattern")
+data <- ts(c(102, 110, 130, 125, 140, 160, 155, 170, 190, 185, 200, 220), 
+           start=c(2025, 1), frequency=12)
+plot(data, col="darkgreen", lwd=2, main="Sales Trend 2025")
 ```
 <img src="./outputs/12_r_timeseries.png" width="500">
 
@@ -209,31 +261,28 @@ plot(sales_ts, col="darkblue", lwd=2, main="Time Series Pattern")
 
 ## 13. Linear Regression (R)
 ### Theoretical Background
-Linear regression models the relationship between a scalar response and one or more explanatory variables.
-- **Model**: $Y = \beta_0 + \beta_1 X + \epsilon$
-- **R-squared**: Explains the goodness of fit (how well the model explains the data).
+Modeling the impact of independent variables on a dependent outcome.
 
 ### R Code
 ```r
 model <- lm(mpg ~ wt, data = mtcars)
 summary(model)
-plot(mtcars$wt, mtcars$mpg)
+plot(mtcars$wt, mtcars$mpg, main="Linear Regression")
 abline(model, col="red", lwd=2)
 ```
+<img src="./outputs/13_r_regression.png" width="500">
 
 ---
 
 ## 14. Probability and Distributions (R)
 ### Theoretical Background
-Probability distributions describe the likelihood of outcomes.
-- **Normal Distribution**: A symmetric, bell-shaped curve defined by mean ($\mu$) and standard deviation ($\sigma$).
-- **PDF**: The Probability Density Function defines the shape of the curve.
-- **Area under Curve**: Total area is 1, representing 100% probability.
+Visualizing the Probability Density Function (PDF) of a Normal Distribution.
 
 ### R Code
 ```r
-x <- seq(-4, 4, length=100); y <- dnorm(x, mean=0, sd=1)
-plot(x, y, type="l", col="black", main="Normal PDF")
+x <- seq(-4, 4, length=100)
+y <- dnorm(x, mean=0, sd=1)
+plot(x, y, type="l", lwd=2, main="Standard Normal Distribution")
 polygon(c(x, rev(x)), c(y, rep(0, length(y))), col="lightblue")
 ```
 <img src="./outputs/14_r_probability.png" width="500">
