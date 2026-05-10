@@ -1,6 +1,19 @@
-# Advanced Statistics and Computational Mathematics Portfolio
+# Statistics Practical Portfolio
 
-This repository contains 14 comprehensive exercises implemented in Scilab, SPSS, and R. Each exercise is designed to cover the core theoretical concepts and practical applications required for advanced data analysis and mathematical modeling.
+1. [Basic Matrix Operations (Scilab)](#1-basic-matrix-operations-scilab)
+2. [Eigenvalues and Eigenvectors (Scilab)](#2-eigenvalues-and-eigenvectors-scilab)
+3. [Equation Solvers (Scilab)](#3-equation-solvers-scilab)
+4. [Matrix Properties (Scilab)](#4-matrix-properties-scilab)
+5. [Reduced Row Echelon Form (Scilab)](#5-reduced-row-echelon-form-scilab)
+6. [Plotting Functions and Derivatives (Scilab)](#6-plotting-functions-and-derivatives-scilab)
+7. [Frequency Table (SPSS)](#7-frequency-table-spss)
+8. [Finding Outliers (SPSS)](#8-finding-outliers-spss)
+9. [Risk Analysis of Projects (SPSS)](#9-risk-analysis-of-projects-spss)
+10. [Scatter Plots and Diagnostics (R)](#10-scatter-plots-and-diagnostics-r)
+11. [Correlation Analysis (R)](#11-correlation-analysis-r)
+12. [Time Series Analysis (R)](#12-time-series-analysis-r)
+13. [Linear Regression (R)](#13-linear-regression-r)
+14. [Probability and Distributions (R)](#14-probability-and-distributions-r)
 
 ---
 
