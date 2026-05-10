@@ -208,6 +208,18 @@ EXAMINE VARIABLES=Salary
   /NOTOTAL.
 ```
 
+### Expected Output
+The 'Explore' procedure generates a Case Processing Summary and a **Boxplot**. In the boxplot, any point marked with an asterisk (*) or a circle is an outlier.
+
+| Statistic | Value |
+|-----------|-------|
+| Median    | 45,000|
+| Q1        | 32,000|
+| Q3        | 58,000|
+| **Outlier (Case 31)** | **115,000** |
+
+<img src="./outputs/08_spss_outliers.png" width="500">
+
 ---
 
 ## 9. Risk Analysis of Projects (SPSS)
@@ -219,7 +231,13 @@ Comparing risk using the **Coefficient of Variation (CV)**.
 DESCRIPTIVES VARIABLES=Project_A_Returns Project_B_Returns
   /STATISTICS=MEAN STDDEV MIN MAX.
 ```
-*Note: CV is calculated as (Std. Deviation / Mean).*
+### Expected Output
+| Project | Mean Return | Std. Deviation | CV (Calculated) | Risk Assessment |
+|---------|-------------|----------------|-----------------|-----------------|
+| Project A| 12.5%       | 2.1%           | 0.168           | Lower Risk      |
+| Project B| 14.0%       | 5.8%           | 0.414           | **Higher Risk** |
+
+**Conclusion**: Project B is riskier due to a higher Coefficient of Variation.
 
 ---
 
