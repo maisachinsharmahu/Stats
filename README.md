@@ -79,7 +79,7 @@ plot(x, y, "blue"); plot(x, dy, "red--");
 title("Function and its Derivative");
 legend("f(x)", "f'(x)");
 ```
-![Function Plot](./outputs/06_function_plot.png)
+<img src="./outputs/06_function_plot.png" width="500">
 
 ## 7. Frequency Table (SPSS)
 ### Steps
@@ -107,7 +107,7 @@ model <- lm(mpg ~ hp + wt, data = mtcars)
 par(mfrow=c(2,2))
 plot(model)
 ```
-![R Diagnostics](./outputs/10_r_plots.png)
+<img src="./outputs/10_r_plots.png" width="500">
 
 ## 11. Correlation Analysis (R)
 ### R Code
@@ -122,7 +122,7 @@ cor(x, y)
 sales_ts <- ts(c(350, 440, 460, 530, 520, 540, 680, 590, 480, 510, 380, 450), start=c(2018, 1), frequency=12)
 plot(sales_ts, col="blue", lwd=2)
 ```
-![R Time Series](./outputs/12_r_timeseries.png)
+<img src="./outputs/12_r_timeseries.png" width="500">
 
 ## 13. Linear Regression (R)
 ### R Code
@@ -140,7 +140,7 @@ x <- seq(-4, 4, length=100); y <- dnorm(x, mean=0, sd=1)
 plot(x, y, type="l", col="black")
 polygon(c(x, rev(x)), c(y, rep(0, length(y))), col="lightblue")
 ```
-![Normal Distribution](./outputs/14_r_probability.png)
+<img src="./outputs/14_r_probability.png" width="500">
 
 ---
 **Good luck with the Exams! 🚀**
