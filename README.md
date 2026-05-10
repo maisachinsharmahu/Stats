@@ -1,4 +1,4 @@
-# Statistics Practical Portfolio
+# Statistics Practical
 
 1. [Basic Matrix Operations (Scilab)](#1-basic-matrix-operations-scilab)
 2. [Eigenvalues and Eigenvectors (Scilab)](#2-eigenvalues-and-eigenvectors-scilab)
